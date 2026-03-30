@@ -555,50 +555,7 @@ body::after{
 </style>
 </head>
 <body>
-### 2. Pega este bloque justo debajo de `<body>`:
 
-```html
-<div id="gatekeeper" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#04040a; z-index:9999; display:flex; align-items:center; justify-content:center; flex-direction:column; font-family:'Share Tech Mono', monospace; transition: all 0.5s ease;">
-    <div style="border:1px solid #6366f1; padding:40px; background:#0c0c1e; border-radius:4px; text-align:center; box-shadow: 0 0 30px rgba(99,102,241,0.3); border: 1px solid rgba(99,102,241,0.5);">
-        <div style="margin-bottom:20px;">
-            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-        </div>
-        <h2 style="color:#6366f1; margin-bottom:10px; letter-spacing:3px; font-family:'Rajdhani', sans-serif; font-weight:700;">SECURITY CHECK</h2>
-        <p style="color:#64748b; font-size:11px; margin-bottom:25px; letter-spacing:1px;">RESTRICTED ACCESS — GEOSTORM ELITE TERMINAL</p>
-        
-        <input type="password" id="passInput" placeholder="ENTER ACCESS KEY" style="background:#04040a; border:1px solid #141438; color:#e2e8f0; padding:15px; text-align:center; width:100%; margin-bottom:20px; outline:none; font-family:'Share Tech Mono'; border-radius:2px; font-size:16px;">
-        
-        <button onclick="checkAccess()" style="background:#6366f1; color:white; border:none; padding:12px 30px; cursor:pointer; width:100%; font-weight:bold; letter-spacing:2px; transition: 0.3s; border-radius:2px;">ACCESS SYSTEM</button>
-        
-        <p id="errorMsg" style="color:#ef4444; font-size:11px; margin-top:20px; display:none; font-weight:bold;">[!] ACCESS DENIED: INVALID ENCRYPTION KEY</p>
-    </div>
-</div>
-
-<script>
-    function checkAccess() {
-        const pass = document.getElementById('passInput').value;
-        const correctPass = "GEO2026"; // <--- PUEDES CAMBIAR TU CLAVE AQUÍ
-        
-        if(pass === correctPass) {
-            // Animación de salida
-            document.getElementById('gatekeeper').style.opacity = '0';
-            setTimeout(() => {
-                document.getElementById('gatekeeper').style.display = 'none';
-            }, 500);
-        } else {
-            const error = document.getElementById('errorMsg');
-            error.style.display = 'block';
-            document.getElementById('passInput').value = '';
-            // Pequeña vibración de error
-            document.getElementById('passInput').style.borderColor = '#ef4444';
-        }
-    }
-    // Detectar tecla Enter
-    document.getElementById('passInput').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') { checkAccess(); }
-    });
-</script>
-   
 <div id="app">
 
 <!-- ═══════════ TOPBAR ═══════════ -->
@@ -1700,6 +1657,33 @@ buildTicker();
 renderFeed();
 renderTopic('brics');
 setTimeout(() => updateImpactPanel('SP:SPX'), 100);
+</script>
+</body>
+</html>
+
+
+
+<div id="gatekeeper" style="position:fixed; inset:0; background:#04040a; z-index:99999; display:flex; align-items:center; justify-content:center; flex-direction:column; font-family:sans-serif;">
+    <div style="border:1px solid #6366f1; padding:40px; background:#0c0c1e; border-radius:8px; text-align:center; box-shadow: 0 0 40px rgba(0,0,0,1);">
+        <h2 style="color:#6366f1; margin-bottom:20px; font-family:'Rajdhani', sans-serif;">ACCESO RESTRINGIDO</h2>
+        <input type="password" id="passInput" placeholder="CLAVE DE ACCESO" style="background:#000; border:1px solid #333; color:#fff; padding:15px; text-align:center; width:100%; margin-bottom:20px; font-size:18px;">
+        <button onclick="checkAccess()" style="background:#6366f1; color:white; border:none; padding:15px; cursor:pointer; width:100%; font-weight:bold; border-radius:4px;">ENTRAR A GEOSTORM</button>
+        <p id="errorMsg" style="color:red; margin-top:15px; display:none;">CLAVE INCORRECTA</p>
+    </div>
+</div>
+
+<script>
+    function checkAccess() {
+        const pass = document.getElementById('passInput').value;
+        if(pass === "GEO2026") {
+            document.getElementById('gatekeeper').style.setProperty('display', 'none', 'important');
+        } else {
+            document.getElementById('errorMsg').style.display = 'block';
+        }
+    }
+    document.getElementById('passInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') checkAccess();
+    });
 </script>
 </body>
 </html>
