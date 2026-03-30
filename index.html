@@ -3,66 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GEOSTORM ELITE — Intelligence Hub</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-
+    <title>GEOSTORM ELITE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div id="gatekeeper">
         <div class="gate-card">
-            <h2 style="font-family: var(--head); letter-spacing: 2px;">GEOSTORM ELITE</h2>
-            <p style="font-size: 10px; color: var(--mu); margin-top: 5px;">SISTEMA DE ACCESO RESTRINGIDO</p>
-            <input type="password" id="passInput" class="gate-input" placeholder="CLAVE DE AGENTE">
-            <button class="gate-btn" onclick="checkAccess()">INICIAR SESIÓN</button>
-            <p id="errorMsg" style="color: var(--red); font-size: 11px; margin-top: 15px; display: none;">ACCESO DENEGADO - CREDENCIALES INVÁLIDAS</p>
+            <h1 style="font-family: var(--head); color: var(--ind3); margin-bottom: 10px;">GEOSTORM ELITE</h1>
+            <input type="password" id="passInput" class="gate-input" style="width:100%; background:black; border:1px solid var(--bdr3); color:white; padding:10px; margin:20px 0;" placeholder="CONTRASEÑA">
+            <button onclick="checkAccess()" style="width:100%; background:var(--ind); border:none; color:white; padding:10px; cursor:pointer; font-weight:bold;">ENTRAR</button>
+            <p id="errorMsg" style="color:var(--red); display:none; margin-top:10px; font-size:12px;">CLAVE INCORRECTA</p>
         </div>
     </div>
 
     <div class="app-shell">
-        
         <header class="top-bar">
-            <div style="font-family: var(--head); font-weight: 700; color: var(--ind3);">GEOSTORM // INTERFACE</div>
+            <div style="padding: 0 20px; font-family: var(--head); font-weight: bold; color: var(--ind3); font-size: 20px;">
+                GEOSTORM <span style="color:var(--mu); font-weight: 300;">ELITE</span>
+            </div>
         </header>
 
-        <div style="display: flex;">
-            <nav class="side-nav">
-                <div style="color: var(--mu); font-size: 11px; margin-bottom: 20px;">MENÚ OPERATIVO</div>
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <button class="asset-btn active">DASHBOARD</button>
-                    <button class="asset-btn">MARKET ANALYSIS</button>
-                    <button class="asset-btn">SATELLITE FEED</button>
-                </div>
+        <div class="main-wrapper">
+            <nav class="side-nav" style="width: 240px; border-right: 1px solid var(--bdr); padding: 20px; display: flex; flex-direction: column; gap: 8px;">
+                <button class="asset-btn active" onclick="setAsset('BTCUSDT', 'BITCOIN / DOLLAR', this)">BITCOIN</button>
+                <button class="asset-btn" onclick="setAsset('GOLD', 'GOLD / ORE', this)">GOLD</button>
+                <button class="asset-btn" onclick="setAsset('NASDAQ', 'NASDAQ 100', this)">NASDAQ</button>
             </nav>
 
-            <main style="flex-grow: 1; display: flex; padding: 20px; gap: 20px;">
+            <main style="flex-grow: 1; display: grid; grid-template-columns: 1fr 350px; padding: 20px; gap: 20px; background: var(--bg0);">
                 
-                <section style="flex: 3; background: var(--bg1); border: 1px solid var(--bdr); border-radius: 4px; padding: 20px;">
-                    <h2 id="tv-asset-title" style="font-family: var(--head); margin-bottom: 15px;">BIENVENIDO, AGENTE</h2>
-                    <div id="tv-chart-container" style="height: 500px; background: var(--bg0); border: 1px solid var(--bdr2); display: flex; align-items: center; justify-content: center;">
-                        <p style="color: var(--mu); font-family: var(--mono);">SELECCIONE UN MÓDULO PARA COMENZAR</p>
-                    </div>
+                <section style="background: var(--bg1); border: 1px solid var(--bdr); border-radius: 4px; display: flex; flex-direction: column;">
+                    <div style="padding: 15px; border-bottom: 1px solid var(--bdr); font-family: var(--head); font-weight: bold;" id="tv-asset-title">TERMINAL READY</div>
+                    <div id="tv-chart-container" style="flex-grow: 1;">
+                        </div>
                 </section>
 
-                <aside style="flex: 1; min-width: 300px; background: var(--bg1); border: 1px solid var(--bdr); border-radius: 4px; display: flex; flex-direction: column;">
-                    <div style="padding: 10px 15px; border-bottom: 1px solid var(--bdr3); display: flex; justify-content: space-between;">
-                        <span style="font-family: var(--head); font-size: 12px; font-weight: 700;">📡 LIVE THREAT FEED</span>
-                        <span class="live-led" style="font-size: 10px;">● LIVE</span>
+                <aside style="background: var(--bg1); border: 1px solid var(--bdr); border-radius: 4px; display: flex; flex-direction: column; overflow: hidden;">
+                    <div style="padding: 10px; border-bottom: 1px solid var(--bdr); display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-family: var(--head); font-size: 14px; font-weight: bold;">INTEL FEED</span>
+                        <span class="live-led">● LIVE</span>
                     </div>
-                    <div style="flex-grow: 1; overflow: hidden;">
-                        <iframe 
-                            src="https://cryptopanic.com/widgets/news/?bg_color=06060f&font_family=sans&header_bg_color=06060f&header_text_color=6366f1&link_color=dde4ff&news_feed=all&posts_limit=10&text_color=8892bb" 
-                            width="100%" 
-                            height="100%" 
-                            frameborder="0">
-                        </iframe>
-                    </div>
+                    <iframe src="https://cryptopanic.com/widgets/news/?bg_color=06060f&font_family=sans&header_bg_color=06060f&header_text_color=6366f1&link_color=dde4ff&news_feed=all&posts_limit=10&text_color=8892bb" width="100%" height="100%" frameborder="0"></iframe>
                 </aside>
-
             </main>
         </div>
     </div>
