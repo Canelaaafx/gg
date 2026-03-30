@@ -9,55 +9,77 @@
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 
 <style>
-/* ... (Tus estilos se mantienen igual) ... */
+/* CSS DE GEOSTORM */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{ --bg0:#04040a; --bg1:#06060f; --bg2:#080815; --surf:#0c0c1e; --surf2:#10102a; --surf3:#141438; --ind:#6366f1; --ind2:#4f52cc; --ind3:#a5b4fc; --id:rgba(99,102,241,.1); --ig:rgba(99,102,241,.25); --ib:rgba(99,102,241,.32); --grn:#22c55e; --grn2:#16a34a; --grn3:#4ade80; --gd:rgba(34,197,94,.1); --gg:rgba(34,197,94,.22); --gb:rgba(34,197,94,.28); --orn:#f97316; --od:rgba(249,115,22,.1); --og:rgba(249,115,22,.22); --ob:rgba(249,115,22,.28); --red:#ef4444; --rd:rgba(239,68,68,.1); --rb:rgba(239,68,68,.28); --yel:#eab308; --yd:rgba(234,179,8,.1); --cyn:#22d3ee; --cd:rgba(34,211,238,.1); --wh:#dde4ff; --wh2:#8892bb; --mu:#3a3e6e; --bdr:rgba(255,255,255,.05); --bdr2:rgba(255,255,255,.09); --bdr3:rgba(255,255,255,.15); --mono:'Share Tech Mono',monospace; --head:'Rajdhani',sans-serif; --body:'DM Sans',sans-serif; --SB:240px; --TOP:50px; }
 html,body{height:100%;overflow:hidden;background:var(--bg0);color:var(--wh);font-family:var(--mono)}
-body::before{ content:'';position:fixed;inset:0;pointer-events:none;z-index:9998; background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.03) 3px,rgba(0,0,0,.03) 4px); }
-body::after{ content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;opacity:.022; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E"); }
-.glass{ background:rgba(12,12,30,.78); backdrop-filter:blur(16px) saturate(1.3); -webkit-backdrop-filter:blur(16px) saturate(1.3); border:1px solid var(--bdr2);border-radius:6px; position:relative;overflow:hidden; }
-#app{ display:grid; grid-template-rows:var(--TOP) 1fr; grid-template-columns:var(--SB) 1fr; height:100vh;overflow:hidden; }
-#topbar{ grid-column:1/-1;display:flex;align-items:center; background:rgba(4,4,10,.94); backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px); border-bottom:1px solid var(--bdr2);z-index:300;position:relative; }
-.tb-brand{ width:var(--SB);height:100%; display:flex;align-items:center;gap:10px;padding:0 18px; border-right:1px solid var(--bdr2);flex-shrink:0; }
-.brand-name{ font-family:var(--head);font-size:20px;font-weight:700; letter-spacing:.12em;text-transform:uppercase;color:var(--wh); }
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.03) 3px,rgba(0,0,0,.03) 4px);}
+#app{display:grid;grid-template-rows:var(--TOP) 1fr;grid-template-columns:var(--SB) 1fr;height:100vh;overflow:hidden;}
+#topbar{grid-column:1/-1;display:flex;align-items:center;background:rgba(4,4,10,.94);backdrop-filter:blur(24px);border-bottom:1px solid var(--bdr2);z-index:300;position:relative;}
+.tb-brand{width:var(--SB);height:100%;display:flex;align-items:center;gap:10px;padding:0 18px;border-right:1px solid var(--bdr2);flex-shrink:0;}
+.brand-name{font-family:var(--head);font-size:20px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--wh);}
 .brand-name em{color:var(--ind);font-style:normal}
-/* (Acortado para el ejemplo, pero incluye todo tu CSS aquí) */
-@media(max-width:900px){ :root{--SB:0px} #app{grid-template-columns:1fr} #sidebar{ position:fixed;left:0;top:var(--TOP);bottom:0; width:240px;transform:translateX(-100%);z-index:300; border-right:1px solid var(--bdr2); } #sidebar.open{transform:translateX(0)} .ham{display:flex} }
+#sidebar{grid-row:2;background:rgba(6,6,15,.92);backdrop-filter:blur(20px);border-right:1px solid var(--bdr2);overflow-y:auto;display:flex;flex-direction:column;z-index:100;}
+#main{grid-row:2;overflow-y:auto;background:var(--bg2)}
+.ph{padding:16px 22px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,21,.93);backdrop-filter:blur(18px);}
+.ph-title{font-family:var(--head);font-size:22px;font-weight:700;text-transform:uppercase;}
+.ph-title span{color:var(--grn)}
+/* ESTILO DEL MURO */
+#gatekeeper{position:fixed;inset:0;background:#04040a;z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;font-family:var(--mono);}
+.lock-box{border:1px solid var(--ind);padding:40px;background:var(--surf);border-radius:4px;text-align:center;box-shadow:0 0 40px rgba(0,0,0,1);}
+.lock-input{background:#000;border:1px solid #333;color:var(--wh);padding:15px;text-align:center;width:100%;margin-bottom:20px;font-size:16px;outline:none;}
+.lock-btn{background:var(--ind);color:white;border:none;padding:15px;cursor:pointer;width:100%;font-weight:bold;letter-spacing:1px;}
 </style>
 </head>
 <body>
 
-<div id="gatekeeper" style="position:fixed; inset:0; background:#04040a; z-index:99999; display:flex; align-items:center; justify-content:center; flex-direction:column; font-family:'Share Tech Mono', monospace;">
-    <div style="border:1px solid #6366f1; padding:40px; background:#0c0c1e; border-radius:4px; text-align:center; box-shadow: 0 0 30px rgba(99,102,241,0.3);">
-        <h2 style="color:#6366f1; margin-bottom:10px; font-family:'Rajdhani';">SECURITY CHECK</h2>
-        <input type="password" id="passInput" placeholder="ENTER KEY" style="background:#04040a; border:1px solid #141438; color:#fff; padding:15px; text-align:center; width:100%; margin-bottom:20px; outline:none;">
-        <button onclick="checkAccess()" style="background:#6366f1; color:white; border:none; padding:12px; cursor:pointer; width:100%; font-weight:bold;">ACCESS SYSTEM</button>
-        <p id="errorMsg" style="color:#ef4444; font-size:11px; margin-top:20px; display:none;">ACCESS DENIED</p>
+<div id="gatekeeper">
+    <div class="lock-box">
+        <h2 style="color:var(--ind); margin-bottom:20px; font-family:var(--head);">ACCESO RESTRINGIDO</h2>
+        <input type="password" id="passInput" class="lock-input" placeholder="CLAVE DE AGENTE">
+        <button onclick="checkAccess()" class="lock-btn">INICIAR SESIÓN</button>
+        <p id="errorMsg" style="color:var(--red); margin-top:15px; display:none; font-size:12px;">CLAVE INCORRECTA</p>
     </div>
 </div>
 
-<script>
-    function checkAccess() {
-        if(document.getElementById('passInput').value === "GEO2026") {
-            document.getElementById('gatekeeper').style.display = 'none';
-        } else {
-            document.getElementById('errorMsg').style.display = 'block';
-        }
-    }
-</script>
 <div id="app">
     <header id="topbar">
         <div class="tb-brand">
             <span class="brand-name">GEO<em>STORM</em></span>
         </div>
+        <div style="padding-left:20px; font-size:10px; color:var(--grn)">SISTEMA ENCRIPTADO</div>
     </header>
+
+    <nav id="sidebar">
+        <div style="padding:20px; color:var(--mu); font-size:10px;">TERMINAL ACTIVO</div>
+        <div style="padding:0 20px; color:var(--wh2)">◎ Dashboard</div>
+    </nav>
+
     <main id="main">
-        <section id="page-feed" class="page active">
-            <div class="ph"><div class="ph-title">Live <span>Feed</span></div></div>
-            <p style="padding: 20px;">SISTEMA ONLINE. BIENVENIDO AGENTE.</p>
-        </section>
+        <div class="ph">
+            <div class="ph-title">Intelligence <span>Hub</span></div>
+        </div>
+        <div style="padding:40px; text-align:center;">
+            <h1 style="color:var(--ind)">BIENVENIDO, AGENTE.</h1>
+            <p style="color:var(--mu); margin-top:10px;">Todos los sistemas operativos. Enero 2026.</p>
+        </div>
     </main>
 </div>
+
+<script>
+    function checkAccess() {
+        const p = document.getElementById('passInput').value;
+        if(p === "GEO2026") {
+            document.getElementById('gatekeeper').style.display = 'none';
+        } else {
+            document.getElementById('errorMsg').style.display = 'block';
+        }
+    }
+    // Permitir Enter
+    document.getElementById('passInput').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') checkAccess();
+    });
+</script>
 
 </body>
 </html>
