@@ -59,35 +59,6 @@ body::after{
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-::-webkit-scrollbar{width:3px;height:3px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--mu);border-radius:2px}
-<div id="gatekeeper" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#04040a; z-index:9999; display:flex; align-items:center; justify-content:center; flex-direction:column; font-family:'Share Tech Mono', monospace;">
-    <div style="border:1px solid #6366f1; padding:40px; background:#0c0c1e; border-radius:4px; text-align:center; box-shadow: 0 0 20px rgba(99,102,241,0.2);">
-        <h2 style="color:#6366f1; margin-bottom:20px; letter-spacing:2px;">SECURITY CHECK</h2>
-        <p style="color:#64748b; font-size:12px; margin-bottom:20px;">RESTRICTED ACCESS — GEOSTORM ELITE</p>
-        <input type="password" id="passInput" placeholder="ENTER ACCESS KEY" style="background:#04040a; border:1px solid #141438; color:#e2e8f0; padding:12px; text-align:center; width:100%; margin-bottom:20px; outline:none;">
-        <button onclick="checkAccess()" style="background:#6366f1; color:white; border:none; padding:12px 30px; cursor:pointer; width:100%; font-weight:bold;">ACCESS TERMINAL</button>
-        <p id="errorMsg" style="color:#f43f5e; font-size:10px; margin-top:15px; display:none;">ACCESS DENIED: INVALID CREDENTIALS</p>
-    </div>
-</div>
-
-<script>
-    function checkAccess() {
-        const pass = document.getElementById('passInput').value;
-        const correctPass = "GEO2026"; // <--- CAMBIA TU CONTRASEÑA AQUÍ
-        
-        if(pass === correctPass) {
-            document.getElementById('gatekeeper').style.display = 'none';
-        } else {
-            document.getElementById('errorMsg').style.display = 'block';
-        }
-    }
-    // Permitir entrar con la tecla Enter
-    document.getElementById('passInput').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') { checkAccess(); }
-    });
-</script>
 /* ═══════════════════════════════════════════════════
    GLASS CARD
 ═══════════════════════════════════════════════════ */
