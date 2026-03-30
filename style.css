@@ -1,57 +1,161 @@
-/* ═══════════════════════════════════════════════════
-   GEOSTORM ELITE — FULL RECOVERY UI
-═══════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   GEOSTORM ELITE — SUPREME UI RESTORATION (style.css)
+   Visually matched to reference image for Premium Cyberpunk look.
+═══════════════════════════════════════════════════════════ */
+
+/* 1. SETUP & CORE VARIABLES */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg0: #04040a; --bg1: #06060f; --bg2: #080815;
-  --surf: #0c0c1e; --surf2: #10102a; --surf3: #141438;
-  --ind: #6366f1; --ind2: #4f52cc; --ind3: #a5b4fc;
-  --wh: #ffffff; --wh2: #dde4ff; --mu: #8892bb;
-  --bdr: #1a1a3a; --bdr2: #222248; --bdr3: #2a2a5a;
-  --grn: #10b981; --red: #ef4444;
-  --head: 'Rajdhani', sans-serif;
-  --mono: 'Share Tech Mono', monospace;
-  --TOP: 56px; --SIDE: 240px;
+  /* Ultra-Dark Backgrounds */
+  --bg0:    #030307;
+  --bg1:    #05050b;
+  --bg2:    #070711;
+  
+  /* Panels & Glass */
+  --surf:   #0a0a1a;
+  --surf2:  #0d0d24;
+  --surf3:  #11112e;
+  --id:     rgba(99, 102, 241, 0.08); /* Indigo glass effect */
+
+  /* Brand Accents (Indigo/Neon) */
+  --ind:    #6366f1;
+  --ind2:   #4f52cc;
+  --ind3:   #a5b4fc;
+
+  /* State Accents */
+  --grn:    #10b981; /* Success/Live */
+  --red:    #ef4444; /* Alert/Danger */
+  --org:    #f59e0b; /* Warning */
+
+  /* Typography Colors */
+  --wh:     #ffffff;
+  --wh2:    #dde4ff; /* Main text */
+  --mu:     #717bb5; /* Muted text */
+
+  /* Borders (Ultra-subtle) */
+  --bdr:    rgba(255, 255, 255, 0.04);
+  --bdr2:   rgba(255, 255, 255, 0.07);
+  --bdr3:   rgba(99, 102, 241, 0.2); /* Neon indigo border */
+
+  /* Typography Fonts */
+  --mono:   'Share Tech Mono', monospace;
+  --head:   'Rajdhani', sans-serif;
+  --sans:   'DM Sans', sans-serif;
+
+  /* Layout Tokens */
+  --TOP:    56px;
+  --SIDE:   240px;
 }
 
-body {
-  background: var(--bg0); color: var(--wh2);
-  font-family: 'DM Sans', sans-serif; margin: 0; overflow: hidden;
+/* 2. BASE ESTYLES */
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg0);
+  color: var(--wh2);
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.6;
 }
 
-/* Recuperar el estilo del Gatekeeper */
+/* CRT Scanlines effect (optional, add if desired) */
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 3px);
+  opacity: 0.5;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--surf3); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ind); }
+
+/* 3. GATEKEEPER (Muro de Seguridad Premium) */
 #gatekeeper {
   position: fixed; inset: 0; background: var(--bg0);
   z-index: 10000; display: flex; align-items: center; justify-content: center;
 }
-
 .gate-card {
-  background: var(--surf); border: 1px solid var(--ind);
-  padding: 3rem; border-radius: 8px; text-align: center;
-  box-shadow: 0 0 40px rgba(99, 102, 241, 0.2);
+  background: var(--surf); border: 1px solid var(--bdr3);
+  padding: 40px; border-radius: 8px; text-align: center; width: 340px;
+  box-shadow: 0 0 50px rgba(99, 102, 241, 0.15);
 }
+.gk-logo { font-family: var(--head); font-size: 28px; font-weight: 700; letter-spacing: 2px; color: var(--wh); margin-bottom: 30px; }
+.gk-logo em { color: var(--ind); font-style: normal; }
 
-/* Botones y Activos */
-.asset-btn {
-  background: transparent; border: 1px solid var(--bdr);
-  color: var(--mu); padding: 12px; border-radius: 4px;
-  cursor: pointer; font-family: var(--head); font-weight: 600;
-  text-align: left; transition: 0.2s;
+.gk-input {
+  width: 100%; background: #000; border: 1px solid var(--bdr2);
+  color: var(--wh); padding: 12px; margin-bottom: 15px; border-radius: 4px;
+  font-family: var(--mono); text-align: center; outline: none; transition: 0.2s;
 }
+.gk-input:focus { border-color: var(--ind); box-shadow: 0 0 10px var(--id); }
 
-.asset-btn.active, .asset-btn:hover {
-  background: var(--id); border-color: var(--ind); color: var(--wh);
+.gk-btn {
+  width: 100%; background: var(--ind); color: #fff; border: none;
+  padding: 12px; border-radius: 4px; cursor: pointer;
+  font-family: var(--head); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+  transition: 0.2s;
 }
+.gk-btn:hover { background: var(--ind2); box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
 
-/* Layout fix */
+/* 4. LAYOUT & PAELS */
 .app-shell { display: flex; flex-direction: column; height: 100vh; }
 .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; }
 
-/* Animación LED */
-@keyframes blink { 50% { opacity: 0.2; } }
+.top-bar {
+  height: var(--TOP); background: var(--bg1);
+  border-bottom: 1px solid var(--bdr2);
+  display: flex; align-items: center; padding: 0 20px; z-index: 100;
+}
+
+.side-nav {
+  width: var(--SIDE); background: var(--bg1);
+  border-right: 1px solid var(--bdr2); padding: 20px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+main { flex-grow: 1; background: var(--bg2); overflow: hidden; }
+
+/* Panel Style (Glass effect) */
+.panel {
+  background: rgba(10, 10, 26, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--bdr);
+  border-radius: 4px;
+  display: flex; flex-direction: column;
+}
+.panel-header {
+  padding: 12px 15px; border-bottom: 1px solid var(--bdr2);
+  font-family: var(--head); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+/* 5. COMPONENTS */
+/* Asset Buttons */
+.asset-btn {
+  background: transparent; border: 1px solid var(--bdr);
+  color: var(--mu); padding: 10px 15px; border-radius: 4px;
+  cursor: pointer; text-align: left;
+  font-family: var(--head); font-weight: 600; text-transform: uppercase;
+  transition: 0.2s ease; outline: none;
+}
+.asset-btn:hover, .asset-btn.active {
+  background: var(--id); border-color: var(--ind); color: var(--wh);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.1);
+}
+
+/* Animations & LEDs */
+@keyframes blink { 50% { opacity: 0.1; } }
 .live-led { color: var(--grn); animation: blink 1.5s infinite; font-weight: bold; }
 
-/* Scrollbars Estilo Cyber */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg0); }
-::-webkit-scrollbar-thumb { background: var(--bdr3); }
+@keyframes tscroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.tick-scroll { display: flex; animation: tscroll 30s linear infinite; white-space: nowrap; font-family: var(--mono); font-size: 11px; color: var(--mu); }
+
+/* 6. RESPONSIVE */
+@media (max-width: 768px) {
+  :root { --SIDE: 0px; }
+  .side-nav { display: none; }
+  .tb-ticker { display: none; }
+}
